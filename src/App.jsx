@@ -562,44 +562,8 @@ export default function DeptQnABot() {
             }}>
               {CONFIG.BOT_NAME}
             </div>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              padding: "4px 10px",
-              borderRadius: "999px",
-              background: sheetData ? "rgba(74,222,128,0.1)" : "rgba(100,116,139,0.1)",
-              border: `1px solid ${sheetData ? "rgba(74,222,128,0.3)" : "rgba(100,116,139,0.3)"}`,
-            }}>
-              <div style={{
-                width: 6, height: 6, borderRadius: "50%",
-                background: sheetData ? "#4ade80" : "#64748b",
-                animation: sheetData ? "pulse 2s infinite" : "none",
-              }} />
-              <span style={{
-                fontSize: "11px",
-                color: sheetData ? "#4ade80" : "#64748b",
-                fontWeight: 600,
-              }}>
-                {sheetData ? `${sheetData.length}행 연결` : "시트 미연결"}
-              </span>
-            </div>
-            {!showSetup && (
-              <button
-                onClick={() => setShowSetup(true)}
-                style={{
-                  fontSize: "11px",
-                  color: "#6366f1",
-                  background: "none",
-                  border: "1px solid rgba(99,102,241,0.3)",
-                  borderRadius: "6px",
-                  padding: "4px 8px",
-                  cursor: "pointer",
-                }}
-              >
-                시트 설정
-              </button>
-            )}
+
+
             {/* 로그 저장 상태 */}
             {logStatus && (
               <div style={{
