@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 // ───────────────────────────────────────────────
 //  ⚙️  설정 — 실제 값으로 교체하세요
@@ -254,7 +255,25 @@ function ChatBubble({ msg }) {
           whiteSpace: "pre-wrap",
         }}
       >
-        {msg.content}
+        {isUser ? msg.content : (
+          <ReactMarkdown
+            components={{
+              p: ({children}) => <p style={{margin:"0 0 8px",lineHeight:"1.7"}}>{children}</p>,
+              h1: ({children}) => <p style={{margin:"0 0 8px",fontWeight:700,fontSize:"16px"}}>{children}</p>,
+              h2: ({children}) => <p style={{margin:"0 0 8px",fontWeight:700,fontSize:"15px"}}>{children}</p>,
+              h3: ({children}) => <p style={{margin:"0 0 6px",fontWeight:700,fontSize:"14px"}}>{children}</p>,
+              ul: ({children}) => <ul style={{margin:"4px 0 8px",paddingLeft:"18px"}}>{children}</ul>,
+              ol: ({children}) => <ol style={{margin:"4px 0 8px",paddingLeft:"18px"}}>{children}</ol>,
+              li: ({children}) => <li style={{margin:"3px 0",lineHeight:"1.6"}}>{children}</li>,
+              strong: ({children}) => <strong style={{color:"#c7d2fe",fontWeight:700}}>{children}</strong>,
+              em: ({children}) => <em style={{color:"#a5b4fc"}}>{children}</em>,
+              code: ({children}) => <code style={{background:"rgba(99,102,241,0.2)",padding:"1px 6px",borderRadius:"4px",fontSize:"13px",color:"#c7d2fe"}}>{children}</code>,
+              hr: () => <hr style={{border:"none",borderTop:"1px solid rgba(99,102,241,0.2)",margin:"8px 0"}} />,
+            }}
+          >
+            {msg.content}
+          </ReactMarkdown>
+        )}
       </div>
       {isUser && (
         <div style={{
