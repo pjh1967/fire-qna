@@ -415,20 +415,7 @@ export default function DeptQnABot() {
 
       {/* 헤더 */}
       <div style={{ textAlign: "center", marginBottom: "24px", animation: "fadeIn 0.6s ease" }}>
-        <div style={{
-          display: "inline-block",
-          background: "rgba(99,102,241,0.15)",
-          border: "1px solid rgba(99,102,241,0.3)",
-          borderRadius: "999px",
-          padding: "4px 16px",
-          fontSize: "12px",
-          color: "#a5b4fc",
-          letterSpacing: "0.1em",
-          marginBottom: "10px",
-          textTransform: "uppercase",
-        }}>
-          AI-Powered · Google Sheets 연동
-        </div>
+
         <h1 style={{
           fontSize: "clamp(20px,4vw,28px)",
           fontWeight: 800,
