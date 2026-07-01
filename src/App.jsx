@@ -374,7 +374,7 @@ export default function DeptQnABot() {
 
     const systemPrompt = `당신은 ${CONFIG.DEPT_NAME}의 친절하고 유능한 AI 도우미 ${CONFIG.BOT_NAME}입니다.
 학생과 학부모, 수험생의 질문에 정확하고 친근하게 답변해주세요.
-아래 Google Sheets 데이터를 최우선으로 참고하여 답변하고, 시트에 없는 내용은 일반 지식으로 보완하세요.
+아래 Google Sheets 데이터를 최우선으로 참고하여 답변하고, 시트에 없는 내용은 혜전대학의 자료를 검색하여 일반 지식으로 보완하세요.
 답변은 한국어로, 친근하고 전문적인 톤으로 작성하세요. 이모지를 적절히 사용해도 좋습니다.${sheetContext}`;
 
     try {
