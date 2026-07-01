@@ -117,7 +117,7 @@ function ChatBubble({ msg }) {
         <div style={{ width:32, height:32, borderRadius:"50%", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, flexShrink:0 }}>🧑‍🚒</div>
       )}
       <div style={{
-        maxWidth:"72%", padding:"10px 14px",
+        maxWidth:"88%", padding:"10px 12px",
         borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
         background: isUser ? "linear-gradient(135deg,#6366f1,#8b5cf6)" : "rgba(30,41,59,0.9)",
         color: isUser ? "#fff" : "#e2e8f0",
@@ -143,15 +143,15 @@ function ChatBubble({ msg }) {
               code: ({children}) => <code style={{background:"rgba(99,102,241,0.2)",padding:"1px 5px",borderRadius:"4px",fontSize:"12px",color:"#c7d2fe"}}>{children}</code>,
               hr: () => <hr style={{border:"none",borderTop:"1px solid rgba(99,102,241,0.2)",margin:"4px 0"}} />,
               table: ({children}) => (
-                <div style={{overflowX:"auto",margin:"6px 0"}}>
-                  <table style={{borderCollapse:"collapse",width:"100%",fontSize:"12px",border:"1px solid rgba(99,102,241,0.4)"}}>{children}</table>
+                <div style={{overflowX:"auto",margin:"6px 0",width:"100%"}}>
+                  <table style={{borderCollapse:"collapse",width:"100%",fontSize:"11px",border:"1px solid rgba(99,102,241,0.4)",tableLayout:"fixed"}}>{children}</table>
                 </div>
               ),
               thead: ({children}) => <thead style={{background:"rgba(99,102,241,0.3)"}}>{children}</thead>,
               tbody: ({children}) => <tbody>{children}</tbody>,
               tr: ({children}) => <tr style={{borderBottom:"1px solid rgba(99,102,241,0.2)"}}>{children}</tr>,
-              th: ({children}) => <th style={{padding:"5px 8px",textAlign:"left",fontWeight:700,color:"#c7d2fe",border:"1px solid rgba(99,102,241,0.35)",whiteSpace:"nowrap"}}>{children}</th>,
-              td: ({children}) => <td style={{padding:"4px 8px",color:"#e2e8f0",border:"1px solid rgba(99,102,241,0.2)",verticalAlign:"top"}}>{children}</td>,
+              th: ({children}) => <th style={{padding:"4px 6px",textAlign:"left",fontWeight:700,color:"#c7d2fe",border:"1px solid rgba(99,102,241,0.35)",wordBreak:"keep-all",lineHeight:"1.4"}}>{children}</th>,
+              td: ({children}) => <td style={{padding:"4px 6px",color:"#e2e8f0",border:"1px solid rgba(99,102,241,0.2)",verticalAlign:"top",wordBreak:"keep-all",lineHeight:"1.4"}}>{children}</td>,
             }}
           >
             {msg.content}
