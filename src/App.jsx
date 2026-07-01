@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 // ───────────────────────────────────────────────
 //  ⚙️  설정 — 실제 값으로 교체하세요
@@ -257,6 +258,7 @@ function ChatBubble({ msg }) {
       >
         {isUser ? msg.content : (
           <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             components={{
               p: ({children}) => <p style={{margin:"0 0 8px",lineHeight:"1.7"}}>{children}</p>,
               h1: ({children}) => <p style={{margin:"0 0 8px",fontWeight:700,fontSize:"16px"}}>{children}</p>,
@@ -372,10 +374,21 @@ export default function DeptQnABot() {
       ? `\n\n## 학과 공식 정보 (Google Sheets 데이터)\n${JSON.stringify(sheetData, null, 2)}`
       : "\n\n(아직 Google Sheets 데이터가 연결되지 않았습니다. 일반 지식으로만 답변합니다.)";
 
-    const systemPrompt = `당신은 ${CONFIG.DEPT_NAME}의 친절하고 유능한 AI 도우미 ${CONFIG.BOT_NAME}입니다.
-학생과 학부모, 수험생의 질문에 정확하고 친근하게 답변해주세요.
-아래 Google Sheets 데이터를 최우선으로 참고하여 답변하고, 시트에 없는 내용은 혜전대학의 자료를 검색하여 일반 지식으로 보완하세요.
-답변은 한국어로, 친근하고 전문적인 톤으로 작성하세요. 이모지를 적절히 사용해도 좋습니다.${sheetContext}`;
+    const systemPrompt = `당신은 혜전대학교 ${CONFIG.DEPT_NAME}의 친절하고 유능한 AI 도우미 ${CONFIG.BOT_NAME}입니다.
+학생, 학부모, 수험생의 질문에 정확하고 친근하게 답변해주세요.
+
+## 답변 시 데이터 우선순위 (반드시 이 순서를 지키세요)
+1순위. 아래 제공된 Google Sheets 데이터 — 가장 정확한 공식 정보입니다. 이 내용이 있으면 반드시 우선 사용하세요.
+2순위. 혜전대학교 관련 공식 정보 (혜전대학교 홈페이지, 학과 안내 등에서 알려진 사실) — Sheets에 없는 내용을 보완할 때 사용하세요.
+3순위. 일반적인 소방안전관리 분야 지식 — 위 두 가지로 답변이 불충분할 때만 사용하세요.
+
+출처가 불분명하거나 확인되지 않은 내용은 "정확한 내용은 학과에 직접 문의해 주세요"라고 안내하세요.
+
+## 답변 형식
+- 비교, 목록, 일정, 자격증, 교육과정 등 나열 가능한 정보는 **반드시 마크다운 표(table)로** 제공하세요.
+- 표 형식: | 항목 | 내용 | 형태로 작성하세요.
+- 표로 표현하기 어려운 경우에만 글머리 기호나 문장으로 답변하세요.
+- 답변은 한국어로, 친근하고 전문적인 톤으로 작성하세요. 이모지를 적절히 사용해도 좋습니다.${sheetContext}`;
 
     try {
       const res = await fetch("/api/chat", {
@@ -427,6 +440,9 @@ export default function DeptQnABot() {
         @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
         * { box-sizing:border-box; }
+        .markdown p:last-child { margin-bottom:0 !important; }
+        .markdown ul, .markdown ol { margin-top:2px !important; margin-bottom:2px !important; }
+        .markdown li { margin:0 !important; padding:0 !important; line-height:1.5 !important; }
         ::-webkit-scrollbar { width:6px }
         ::-webkit-scrollbar-track { background:transparent }
         ::-webkit-scrollbar-thumb { background:rgba(99,102,241,0.4);border-radius:3px }
