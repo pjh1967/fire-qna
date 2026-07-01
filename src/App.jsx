@@ -313,12 +313,6 @@ export default function DeptQnABot() {
       const rows = parseCSV(text);
       setSheetData(rows);
       setShowSetup(false);
-      setMessages([
-        {
-          role: "assistant",
-          content: `시트 데이터 ${rows.length}행을 로드했습니다! ✅\n${CONFIG.DEPT_NAME}에 대해 무엇이든 물어보세요 🤖`,
-        },
-      ]);
     } catch (e) {
       setSheetError(e.message + "\n\n💡 시트를 \"웹에 게시 > CSV\"로 공유했는지 확인하세요.");
     } finally {
