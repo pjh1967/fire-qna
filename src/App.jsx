@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 const CONFIG = {
   // Google Sheets CSV 공개 URL (파일 > 공유 > 웹에 게시 > CSV)
   SHEET_CSV_URL:
-    "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Hdpox6FZP3QYre_jxScGYlu7UOG9_rXzqSlfIzMy1QrMgTQOwXW3qMV55-PTPSvwzWw2AYrr5w5G/pub?gid=0&single=true&output=csv",
   // Apps Script 웹앱 URL (대화 로그 저장용)
   // Apps Script 배포 > 새 배포 > 웹 앱 > 배포 후 URL 붙여넣기
   LOG_SCRIPT_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
@@ -285,13 +285,18 @@ export default function DeptQnABot() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [mood, setMood] = useState("idle");
-  const [showSetup, setShowSetup] = useState(true);
+  const [showSetup, setShowSetup] = useState(false);
   const [logStatus, setLogStatus] = useState(""); // "saving" | "saved" | "error"
   const chatEndRef = useRef(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // 페이지 로드 시 시트 자동 연결
+  useEffect(() => {
+    loadSheet();
+  }, []);
 
   // Google Sheets CSV 불러오기
   async function loadSheet() {
