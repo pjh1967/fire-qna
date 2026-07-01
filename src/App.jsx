@@ -40,8 +40,8 @@ function RobotMascot({ isTyping, mood }) {
   return (
     <svg
       viewBox="0 0 160 220"
-      width="120"
-      height="165"
+      width="clamp(60px, 15vw, 120px)"
+      height="clamp(82px, 20vw, 165px)"
       style={{
         filter: "drop-shadow(0 6px 18px rgba(239,68,68,0.30))",
         animation: isTyping
@@ -401,7 +401,7 @@ export default function DeptQnABot() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "24px 16px",
+      padding: "12px 8px",
     }}>
       <style>{`
         @keyframes bobbing { from{transform:translateY(0)} to{transform:translateY(-8px)} }
@@ -543,22 +543,22 @@ export default function DeptQnABot() {
         <div style={{ display: "flex", gap: "0", height: showSetup ? "420px" : "500px" }}>
           {/* 로봇 사이드바 */}
           <div style={{
-            width: "160px",
+            width: "clamp(80px, 20vw, 160px)",
             flexShrink: 0,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            padding: "20px 12px",
+            padding: "12px 6px",
             borderRight: "1px solid rgba(99,102,241,0.15)",
             background: "rgba(99,102,241,0.04)",
-            gap: "12px",
+            gap: "8px",
           }}>
             <RobotMascot isTyping={isLoading} mood={mood} />
             <div style={{
               textAlign: "center",
               color: "#a5b4fc",
-              fontSize: "13px",
+              fontSize: "clamp(10px, 2.5vw, 13px)",
               fontWeight: 700,
             }}>
               {CONFIG.BOT_NAME}
@@ -668,20 +668,22 @@ export default function DeptQnABot() {
 
             {/* 입력창 */}
             <div style={{
-              padding: "16px",
+              padding: "10px",
               borderTop: "1px solid rgba(99,102,241,0.15)",
               display: "flex",
-              gap: "10px",
+              gap: "6px",
+              alignItems: "center",
             }}>
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
-                placeholder={`${CONFIG.DEPT_NAME}에 대해 질문하세요...`}
+                placeholder="질문하세요..."
                 disabled={isLoading}
                 style={{
                   flex: 1,
-                  padding: "12px 16px",
+                  minWidth: 0,
+                  padding: "10px 12px",
                   borderRadius: "12px",
                   border: "1px solid rgba(99,102,241,0.3)",
                   background: "rgba(15,23,42,0.8)",
@@ -697,7 +699,8 @@ export default function DeptQnABot() {
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
                 style={{
-                  padding: "12px 20px",
+                  flexShrink: 0,
+                  padding: "10px 14px",
                   borderRadius: "12px",
                   border: "none",
                   background: isLoading || !input.trim()
@@ -708,6 +711,7 @@ export default function DeptQnABot() {
                   fontSize: "14px",
                   cursor: isLoading || !input.trim() ? "not-allowed" : "pointer",
                   transition: "all 0.2s",
+                  whiteSpace: "nowrap",
                 }}
               >
                 전송 ↑
