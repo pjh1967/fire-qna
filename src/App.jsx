@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 const CONFIG = {
   SHEET_CSV_URL:
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Hdpox6FZP3QYre_jxScGYlu7UOG9_rXzqSlfIzMy1QrMgTQOwXW3qMV55-PTPSvwzWw2AYrr5w5G/pub?gid=0&single=true&output=csv",
-  LOG_SCRIPT_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
+  LOG_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx_8yOlwjmmP2nRJChzbet4OaTXdnaJt0vxu0ayct3PgJiPZ-B8cBnuMn2p_wLh18a2sQ/exec",
   DEPT_NAME: "혜전대 소방안전관리과",
   BOT_NAME: "파이어봇",
 };
