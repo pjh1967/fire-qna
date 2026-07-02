@@ -290,7 +290,7 @@ export default function DeptQnABot() {
       </div>
 
       {/* ── 예시 질문 버튼 ── */}
-      {messages.length <= 1 && (
+      {(
         <div style={{ width:"100%", maxWidth:"100%", padding:"6px 12px", display:"flex", flexWrap:"wrap", gap:"6px" }}>
           {["입학 전형은?","졸업 후 진로는?","교육과정 알려줘","장학금 제도는?"].map((q) => (
             <button key={q} onClick={() => setInput(q)}
