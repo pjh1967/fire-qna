@@ -6,7 +6,7 @@ const CONFIG = {
   SHEET_CSV_URL:
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Hdpox6FZP3QYre_jxScGYlu7UOG9_rXzqSlfIzMy1QrMgTQOwXW3qMV55-PTPSvwzWw2AYrr5w5G/pub?gid=0&single=true&output=csv",
   LOG_SCRIPT_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
-  DEPT_NAME: "소방안전관리학과",
+  DEPT_NAME: "혜전대 소방안전관리과",
   BOT_NAME: "파이어봇",
 };
 
@@ -26,8 +26,8 @@ function parseCSV(text) {
 
 function RobotMascot({ isTyping, mood }) {
   return (
-    <svg viewBox="0 0 160 220" width="clamp(60px, 15vw, 120px)" height="clamp(82px, 20vw, 165px)"
-      style={{ filter:"drop-shadow(0 6px 18px rgba(239,68,68,0.30))", animation: isTyping ? "bobbing 0.5s ease-in-out infinite alternate" : "idle 3s ease-in-out infinite alternate", overflow:"visible" }}>
+    <svg viewBox="0 0 160 220" width="80" height="110"
+      style={{ filter:"drop-shadow(0 4px 12px rgba(239,68,68,0.35))", animation: isTyping ? "bobbing 0.5s ease-in-out infinite alternate" : "idle 3s ease-in-out infinite alternate", overflow:"visible", flexShrink:0 }}>
       <ellipse cx="80" cy="52" rx="40" ry="44" fill="#dc2626" />
       <rect x="32" y="76" width="96" height="12" rx="6" fill="#b91c1c" />
       <ellipse cx="68" cy="36" rx="14" ry="9" fill="#fca5a5" opacity="0.35" />
@@ -84,27 +84,9 @@ function RobotMascot({ isTyping, mood }) {
       <rect x="8" y="147" width="24" height="44" rx="12" fill="#1d4ed8" />
       <rect x="8" y="164" width="24" height="7" rx="3" fill="#fde047" opacity="0.9" />
       <ellipse cx="20" cy="196" rx="12" ry="10" fill="#fdba74" />
-      <rect x="10" y="189" width="6" height="10" rx="3" fill="#fca5a5" opacity="0.6" />
-      <rect x="17" y="187" width="6" height="12" rx="3" fill="#fca5a5" opacity="0.6" />
-      <rect x="24" y="189" width="6" height="10" rx="3" fill="#fca5a5" opacity="0.6" />
       <rect x="128" y="147" width="24" height="44" rx="12" fill="#1d4ed8" />
       <rect x="128" y="164" width="24" height="7" rx="3" fill="#fde047" opacity="0.9" />
       <ellipse cx="140" cy="196" rx="12" ry="10" fill="#fdba74" />
-      <rect x="148" y="186" width="18" height="7" rx="3.5" fill="#6b7280" />
-      <rect x="163" y="182" width="8" height="15" rx="4" fill="#9ca3af" />
-      {isTyping && (
-        <>
-          <ellipse cx="174" cy="179" rx="3" ry="2" fill="#93c5fd" opacity="0.9"><animate attributeName="cx" values="174;180;186" dur="0.5s" repeatCount="indefinite" /><animate attributeName="opacity" values="0.9;0.5;0" dur="0.5s" repeatCount="indefinite" /></ellipse>
-          <ellipse cx="176" cy="175" rx="2" ry="1.5" fill="#bfdbfe" opacity="0.8"><animate attributeName="cx" values="176;183;190" dur="0.5s" begin="0.15s" repeatCount="indefinite" /><animate attributeName="opacity" values="0.8;0.4;0" dur="0.5s" begin="0.15s" repeatCount="indefinite" /></ellipse>
-          <ellipse cx="172" cy="183" rx="2.5" ry="1.5" fill="#93c5fd" opacity="0.7"><animate attributeName="cx" values="172;178;184" dur="0.5s" begin="0.3s" repeatCount="indefinite" /><animate attributeName="opacity" values="0.7;0.3;0" dur="0.5s" begin="0.3s" repeatCount="indefinite" /></ellipse>
-        </>
-      )}
-      <rect x="42" y="198" width="30" height="16" rx="8" fill="#1d4ed8" />
-      <rect x="88" y="198" width="30" height="16" rx="8" fill="#1d4ed8" />
-      <rect x="36" y="208" width="38" height="13" rx="6" fill="#111827" />
-      <rect x="86" y="208" width="38" height="13" rx="6" fill="#111827" />
-      <rect x="36" y="212" width="38" height="4" rx="2" fill="#fde047" opacity="0.8" />
-      <rect x="86" y="212" width="38" height="4" rx="2" fill="#fde047" opacity="0.8" />
     </svg>
   );
 }
@@ -112,18 +94,19 @@ function RobotMascot({ isTyping, mood }) {
 function ChatBubble({ msg }) {
   const isUser = msg.role === "user";
   return (
-    <div style={{ display:"flex", justifyContent:isUser?"flex-end":"flex-start", marginBottom:"12px", gap:"8px", alignItems:"flex-end" }}>
+    <div style={{ display:"flex", justifyContent:isUser?"flex-end":"flex-start", marginBottom:"10px", gap:"6px", alignItems:"flex-end" }}>
       {!isUser && (
-        <div style={{ width:32, height:32, borderRadius:"50%", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, flexShrink:0 }}>🧑‍🚒</div>
+        <div style={{ width:28, height:28, borderRadius:"50%", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, flexShrink:0 }}>🧑‍🚒</div>
       )}
       <div style={{
-        maxWidth:"88%", padding:"10px 12px",
-        borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-        background: isUser ? "linear-gradient(135deg,#6366f1,#8b5cf6)" : "rgba(30,41,59,0.9)",
+        maxWidth:"85%", padding:"9px 12px",
+        borderRadius: isUser ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
+        background: isUser ? "linear-gradient(135deg,#6366f1,#8b5cf6)" : "rgba(30,41,59,0.95)",
         color: isUser ? "#fff" : "#e2e8f0",
         fontSize:"13px", lineHeight:"1.6",
-        boxShadow: isUser ? "0 4px 16px rgba(99,102,241,0.3)" : "0 4px 16px rgba(0,0,0,0.3)",
+        boxShadow: isUser ? "0 3px 12px rgba(99,102,241,0.3)" : "0 3px 12px rgba(0,0,0,0.3)",
         border: isUser ? "none" : "1px solid rgba(99,102,241,0.2)",
+        wordBreak:"keep-all", overflowWrap:"break-word",
       }}>
         {isUser ? (
           <span style={{whiteSpace:"pre-wrap"}}>{msg.content}</span>
@@ -132,15 +115,15 @@ function ChatBubble({ msg }) {
             remarkPlugins={[remarkGfm]}
             components={{
               p: ({children}) => <p style={{margin:"0 0 4px",lineHeight:"1.6"}}>{children}</p>,
-              h1: ({children}) => <p style={{margin:"6px 0 3px",fontWeight:700,fontSize:"15px",color:"#c7d2fe"}}>{children}</p>,
-              h2: ({children}) => <p style={{margin:"6px 0 3px",fontWeight:700,fontSize:"14px",color:"#c7d2fe"}}>{children}</p>,
+              h1: ({children}) => <p style={{margin:"6px 0 3px",fontWeight:700,fontSize:"14px",color:"#c7d2fe"}}>{children}</p>,
+              h2: ({children}) => <p style={{margin:"6px 0 3px",fontWeight:700,fontSize:"13px",color:"#c7d2fe"}}>{children}</p>,
               h3: ({children}) => <p style={{margin:"4px 0 2px",fontWeight:700,fontSize:"13px",color:"#a5b4fc"}}>{children}</p>,
-              ul: ({children}) => <ul style={{margin:"2px 0 4px",paddingLeft:"16px"}}>{children}</ul>,
-              ol: ({children}) => <ol style={{margin:"2px 0 4px",paddingLeft:"16px"}}>{children}</ol>,
+              ul: ({children}) => <ul style={{margin:"2px 0 4px",paddingLeft:"14px"}}>{children}</ul>,
+              ol: ({children}) => <ol style={{margin:"2px 0 4px",paddingLeft:"14px"}}>{children}</ol>,
               li: ({children}) => <li style={{margin:"1px 0",lineHeight:"1.6"}}>{children}</li>,
               strong: ({children}) => <strong style={{color:"#c7d2fe",fontWeight:700}}>{children}</strong>,
               em: ({children}) => <em style={{color:"#a5b4fc"}}>{children}</em>,
-              code: ({children}) => <code style={{background:"rgba(99,102,241,0.2)",padding:"1px 5px",borderRadius:"4px",fontSize:"12px",color:"#c7d2fe"}}>{children}</code>,
+              code: ({children}) => <code style={{background:"rgba(99,102,241,0.2)",padding:"1px 4px",borderRadius:"3px",fontSize:"11px",color:"#c7d2fe"}}>{children}</code>,
               hr: () => <hr style={{border:"none",borderTop:"1px solid rgba(99,102,241,0.2)",margin:"4px 0"}} />,
               table: ({children}) => (
                 <div style={{overflowX:"auto",margin:"6px 0",width:"100%"}}>
@@ -150,8 +133,8 @@ function ChatBubble({ msg }) {
               thead: ({children}) => <thead style={{background:"rgba(99,102,241,0.3)"}}>{children}</thead>,
               tbody: ({children}) => <tbody>{children}</tbody>,
               tr: ({children}) => <tr style={{borderBottom:"1px solid rgba(99,102,241,0.2)"}}>{children}</tr>,
-              th: ({children}) => <th style={{padding:"4px 6px",textAlign:"left",fontWeight:700,color:"#c7d2fe",border:"1px solid rgba(99,102,241,0.35)",wordBreak:"keep-all",lineHeight:"1.4"}}>{children}</th>,
-              td: ({children}) => <td style={{padding:"4px 6px",color:"#e2e8f0",border:"1px solid rgba(99,102,241,0.2)",verticalAlign:"top",wordBreak:"keep-all",lineHeight:"1.4"}}>{children}</td>,
+              th: ({children}) => <th style={{padding:"4px 6px",textAlign:"left",fontWeight:700,color:"#c7d2fe",border:"1px solid rgba(99,102,241,0.35)",wordBreak:"break-all",overflowWrap:"break-word",whiteSpace:"normal",lineHeight:"1.4",overflow:"hidden"}}>{children}</th>,
+              td: ({children}) => <td style={{padding:"4px 6px",color:"#e2e8f0",border:"1px solid rgba(99,102,241,0.2)",verticalAlign:"top",wordBreak:"break-all",overflowWrap:"break-word",whiteSpace:"normal",lineHeight:"1.4",overflow:"hidden"}}>{children}</td>,
             }}
           >
             {msg.content}
@@ -159,24 +142,21 @@ function ChatBubble({ msg }) {
         )}
       </div>
       {isUser && (
-        <div style={{ width:32, height:32, borderRadius:"50%", background:"linear-gradient(135deg,#f43f5e,#fb923c)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, flexShrink:0 }}>👤</div>
+        <div style={{ width:28, height:28, borderRadius:"50%", background:"linear-gradient(135deg,#f43f5e,#fb923c)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12, flexShrink:0 }}>👤</div>
       )}
     </div>
   );
 }
 
 export default function DeptQnABot() {
-  const [sheetUrl, setSheetUrl] = useState(CONFIG.SHEET_CSV_URL);
+  const [sheetUrl] = useState(CONFIG.SHEET_CSV_URL);
   const [sheetData, setSheetData] = useState(null);
-  const [sheetLoading, setSheetLoading] = useState(false);
-  const [sheetError, setSheetError] = useState("");
   const [messages, setMessages] = useState([
-    { role:"assistant", content:`안녕하세요! 저는 ${CONFIG.DEPT_NAME} AI 도우미 ${CONFIG.BOT_NAME}입니다 🤖\n궁금한 점을 무엇이든 물어보세요!` },
+    { role:"assistant", content:`안녕하세요! 저는 ${CONFIG.DEPT_NAME} AI 도우미 ${CONFIG.BOT_NAME}입니다 🔥\n궁금한 점을 무엇이든 물어보세요!` },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [mood, setMood] = useState("idle");
-  const [showSetup, setShowSetup] = useState(false);
   const [logStatus, setLogStatus] = useState("");
   const chatEndRef = useRef(null);
 
@@ -184,21 +164,21 @@ export default function DeptQnABot() {
   useEffect(() => { loadSheet(); }, []);
 
   async function loadSheet() {
-    if (!sheetUrl.includes("docs.google.com")) return;
-    setSheetLoading(true);
-    setSheetError("");
     try {
       const res = await fetch(sheetUrl);
-      if (!res.ok) throw new Error("시트를 불러올 수 없습니다.");
+      if (!res.ok) return;
       const text = await res.text();
-      const rows = parseCSV(text);
+      const lines = text.trim().split("\n");
+      if (lines.length < 2) return;
+      const headers = lines[0].split(",").map((h) => h.trim().replace(/^"|"$/g, ""));
+      const rows = lines.slice(1).map((line) => {
+        const cols = line.match(/(".*?"|[^,]+)(?=,|$)/g) || [];
+        const row = {};
+        headers.forEach((h, i) => { row[h] = (cols[i] || "").trim().replace(/^"|"$/g, ""); });
+        return row;
+      });
       setSheetData(rows);
-      setShowSetup(false);
-    } catch (e) {
-      setSheetError(e.message);
-    } finally {
-      setSheetLoading(false);
-    }
+    } catch {}
   }
 
   async function saveLog(question, answer) {
@@ -221,21 +201,20 @@ export default function DeptQnABot() {
 
     const sheetContext = sheetData
       ? `\n\n## 학과 공식 정보 (Google Sheets 데이터)\n${JSON.stringify(sheetData, null, 2)}`
-      : "\n\n(아직 Google Sheets 데이터가 연결되지 않았습니다. 일반 지식으로만 답변합니다.)";
+      : "\n\n(Google Sheets 데이터 미연결. 일반 지식으로 답변합니다.)";
 
-    const systemPrompt = `당신은 혜전대학교 ${CONFIG.DEPT_NAME}의 친절하고 유능한 AI 도우미 ${CONFIG.BOT_NAME}입니다.
+    const systemPrompt = `당신은 혜전대학교 소방안전관리과의 친절하고 유능한 AI 도우미 ${CONFIG.BOT_NAME}입니다.
 학생, 학부모, 수험생의 질문에 정확하고 친근하게 답변해주세요.
 
-## 답변 시 데이터 우선순위 (반드시 이 순서를 지키세요)
-1순위. 아래 제공된 Google Sheets 데이터 — 가장 정확한 공식 정보입니다. 이 내용이 있으면 반드시 우선 사용하세요.
-2순위. 혜전대학교 관련 공식 정보 (혜전대학교 홈페이지, 학과 안내 등에서 알려진 사실) — Sheets에 없는 내용을 보완할 때 사용하세요.
-3순위. 일반적인 소방안전관리 분야 지식 — 위 두 가지로 답변이 불충분할 때만 사용하세요.
+## 답변 시 데이터 우선순위
+1순위. 아래 Google Sheets 데이터 (가장 정확한 공식 정보)
+2순위. 혜전대학교 소방안전관리과 공식 정보
+3순위. 일반적인 소방안전관리 분야 지식
 
 출처가 불분명하거나 확인되지 않은 내용은 "정확한 내용은 학과장(010-5195-3543)에게 문의해 주세요."라고 안내하세요.
 
 ## 답변 형식
 - 비교, 목록, 일정, 자격증, 교육과정 등 나열 가능한 정보는 반드시 마크다운 표(table)로 제공하세요.
-- 표 형식: | 항목 | 내용 | 형태로 작성하세요.
 - 표로 표현하기 어려운 경우에만 글머리 기호나 문장으로 답변하세요.
 - 답변은 한국어로, 친근하고 전문적인 톤으로 작성하세요. 이모지를 적절히 사용해도 좋습니다.${sheetContext}`;
 
@@ -257,111 +236,89 @@ export default function DeptQnABot() {
       setMood("happy");
       setTimeout(() => setMood("idle"), 2000);
       saveLog(userMsg, reply);
-    } catch (e) {
+    } catch {
       setMessages((prev) => [...prev, { role:"assistant", content:"⚠️ 네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }]);
       setMood("idle");
     } finally { setIsLoading(false); }
   }
 
   return (
-    <div style={{ minHeight:"100vh", background:"linear-gradient(135deg,#020617 0%,#0f172a 50%,#1e1b4b 100%)", fontFamily:"'Pretendard','Noto Sans KR',sans-serif", display:"flex", flexDirection:"column", alignItems:"center", padding:"12px 8px" }}>
+    <div style={{ minHeight:"100dvh", height:"100dvh", background:"linear-gradient(135deg,#020617 0%,#0f172a 50%,#1e1b4b 100%)", fontFamily:"'Pretendard','Noto Sans KR',sans-serif", display:"flex", flexDirection:"column", alignItems:"center", padding:"0" }}>
       <style>{`
-        @keyframes bobbing { from{transform:translateY(0)} to{transform:translateY(-8px)} }
-        @keyframes idle { from{transform:translateY(0) rotate(-1deg)} to{transform:translateY(-4px) rotate(1deg)} }
-        @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes bobbing { from{transform:translateY(0)} to{transform:translateY(-6px)} }
+        @keyframes idle { from{transform:translateY(0) rotate(-1deg)} to{transform:translateY(-3px) rotate(1deg)} }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
         * { box-sizing:border-box; }
-        ::-webkit-scrollbar { width:6px }
+        ::-webkit-scrollbar { width:4px }
         ::-webkit-scrollbar-track { background:transparent }
-        ::-webkit-scrollbar-thumb { background:rgba(99,102,241,0.4);border-radius:3px }
+        ::-webkit-scrollbar-thumb { background:rgba(99,102,241,0.4);border-radius:2px }
+        input:focus { outline:none; }
       `}</style>
 
-      <div style={{ textAlign:"center", marginBottom:"20px", animation:"fadeIn 0.6s ease" }}>
-        <h1 style={{ fontSize:"clamp(20px,4vw,28px)", fontWeight:800, color:"#f8fafc", margin:0, letterSpacing:"-0.02em" }}>{CONFIG.DEPT_NAME}</h1>
-        <p style={{ color:"#94a3b8", fontSize:"14px", margin:"4px 0 0" }}>AI 학과 안내 챗봇 — {CONFIG.BOT_NAME}</p>
-      </div>
-
-      <div style={{ width:"100%", maxWidth:"800px", background:"rgba(15,23,42,0.8)", border:"1px solid rgba(99,102,241,0.2)", borderRadius:"24px", overflow:"hidden", backdropFilter:"blur(20px)", boxShadow:"0 24px 80px rgba(0,0,0,0.5)", animation:"fadeIn 0.8s ease" }}>
-
-        {showSetup && (
-          <div style={{ padding:"20px", borderBottom:"1px solid rgba(99,102,241,0.2)", background:"rgba(99,102,241,0.05)" }}>
-            <div style={{ display:"flex", gap:"8px" }}>
-              <input value={sheetUrl} onChange={(e) => setSheetUrl(e.target.value)} placeholder="Google Sheets CSV URL"
-                style={{ flex:1, padding:"10px 14px", borderRadius:"10px", border:"1px solid rgba(99,102,241,0.3)", background:"rgba(15,23,42,0.8)", color:"#e2e8f0", fontSize:"13px", outline:"none" }} />
-              <button onClick={loadSheet} disabled={sheetLoading}
-                style={{ padding:"10px 20px", borderRadius:"10px", border:"none", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", color:"#fff", fontWeight:700, fontSize:"13px", cursor:"pointer", opacity:sheetLoading?0.6:1 }}>
-                {sheetLoading ? "로딩..." : "연결"}
-              </button>
+      {/* ── 상단 헤더 (캐릭터 + 제목 가로 배치) ── */}
+      <div style={{ width:"100%", maxWidth:"100%", display:"flex", alignItems:"center", gap:"12px", padding:"12px 14px 10px", borderBottom:"1px solid rgba(99,102,241,0.15)" }}>
+        <RobotMascot isTyping={isLoading} mood={mood} />
+        <div>
+          <div style={{ fontSize:"18px", fontWeight:800, color:"#f8fafc", letterSpacing:"-0.02em", lineHeight:1.2 }}>{CONFIG.DEPT_NAME}</div>
+          <div style={{ fontSize:"12px", color:"#6366f1", fontWeight:600, marginTop:"3px" }}>{CONFIG.BOT_NAME}</div>
+          {logStatus && (
+            <div style={{ fontSize:"10px", marginTop:"4px",
+              color: logStatus==="saved"?"#4ade80":logStatus==="saving"?"#fbbf24":"#f87171" }}>
+              {logStatus==="saving"?"저장 중...":logStatus==="saved"?"✓ 저장됨":"저장 실패"}
             </div>
-            <div style={{ marginTop:"8px", textAlign:"right" }}>
-              <button onClick={() => setShowSetup(false)} style={{ background:"none", border:"none", color:"#64748b", fontSize:"12px", cursor:"pointer", textDecoration:"underline" }}>닫기 →</button>
-            </div>
-          </div>
-        )}
-
-        <div style={{ display:"flex", height:showSetup?"400px":"500px" }}>
-          <div style={{ width:"clamp(80px,20vw,160px)", flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"12px 6px", borderRight:"1px solid rgba(99,102,241,0.15)", background:"rgba(99,102,241,0.04)", gap:"8px" }}>
-            <RobotMascot isTyping={isLoading} mood={mood} />
-            <div style={{ textAlign:"center", color:"#a5b4fc", fontSize:"clamp(10px,2.5vw,13px)", fontWeight:700 }}>{CONFIG.BOT_NAME}</div>
-            {logStatus && (
-              <div style={{ fontSize:"11px", padding:"4px 10px", borderRadius:"999px",
-                background: logStatus==="saved"?"rgba(74,222,128,0.1)":logStatus==="saving"?"rgba(251,191,36,0.1)":"rgba(244,63,94,0.1)",
-                border:`1px solid ${logStatus==="saved"?"rgba(74,222,128,0.3)":logStatus==="saving"?"rgba(251,191,36,0.3)":"rgba(244,63,94,0.3)"}`,
-                color: logStatus==="saved"?"#4ade80":logStatus==="saving"?"#fbbf24":"#f87171", textAlign:"center" }}>
-                {logStatus==="saving"?"저장 중...":logStatus==="saved"?"✓ 저장":"저장 실패"}
-              </div>
-            )}
-          </div>
-
-          <div style={{ flex:1, display:"flex", flexDirection:"column", minWidth:0 }}>
-            <div style={{ flex:1, overflowY:"auto", padding:"16px", display:"flex", flexDirection:"column" }}>
-              {messages.map((msg, i) => (
-                <div key={i} style={{ animation:"fadeIn 0.3s ease" }}>
-                  <ChatBubble msg={msg} />
-                </div>
-              ))}
-              {isLoading && (
-                <div style={{ display:"flex", gap:"8px", alignItems:"flex-end", marginBottom:"12px" }}>
-                  <div style={{ width:32, height:32, borderRadius:"50%", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>🤖</div>
-                  <div style={{ padding:"12px 16px", borderRadius:"18px 18px 18px 4px", background:"rgba(30,41,59,0.9)", border:"1px solid rgba(99,102,241,0.2)", display:"flex", gap:"5px", alignItems:"center" }}>
-                    {[0,0.2,0.4].map((d,i) => <div key={i} style={{ width:8, height:8, borderRadius:"50%", background:"#6366f1", animation:`pulse 1s ${d}s infinite` }} />)}
-                  </div>
-                </div>
-              )}
-              <div ref={chatEndRef} />
-            </div>
-
-            <div style={{ padding:"10px", borderTop:"1px solid rgba(99,102,241,0.15)", display:"flex", gap:"6px", alignItems:"center" }}>
-              <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key==="Enter"&&!e.shiftKey&&sendMessage()}
-                placeholder="질문하세요..." disabled={isLoading}
-                style={{ flex:1, minWidth:0, padding:"10px 12px", borderRadius:"12px", border:"1px solid rgba(99,102,241,0.3)", background:"rgba(15,23,42,0.8)", color:"#e2e8f0", fontSize:"14px", outline:"none" }}
-                onFocus={(e) => (e.target.style.borderColor="rgba(99,102,241,0.7)")}
-                onBlur={(e) => (e.target.style.borderColor="rgba(99,102,241,0.3)")} />
-              <button onClick={sendMessage} disabled={isLoading||!input.trim()}
-                style={{ flexShrink:0, padding:"10px 14px", borderRadius:"12px", border:"none",
-                  background:isLoading||!input.trim()?"rgba(99,102,241,0.3)":"linear-gradient(135deg,#6366f1,#8b5cf6)",
-                  color:"#fff", fontWeight:700, fontSize:"14px", cursor:isLoading||!input.trim()?"not-allowed":"pointer", whiteSpace:"nowrap" }}>
-                전송 ↑
-              </button>
-            </div>
-          </div>
+          )}
         </div>
-
-        {messages.length <= 1 && (
-          <div style={{ padding:"12px 16px", borderTop:"1px solid rgba(99,102,241,0.1)", display:"flex", flexWrap:"wrap", gap:"8px" }}>
-            {["입학 전형은 어떻게 되나요?","졸업 후 진로는?","교육과정을 알려주세요","장학금 제도가 있나요?"].map((q) => (
-              <button key={q} onClick={() => setInput(q)}
-                style={{ padding:"6px 14px", borderRadius:"999px", border:"1px solid rgba(99,102,241,0.3)", background:"rgba(99,102,241,0.08)", color:"#a5b4fc", fontSize:"12px", cursor:"pointer" }}
-                onMouseEnter={(e) => (e.target.style.background="rgba(99,102,241,0.2)")}
-                onMouseLeave={(e) => (e.target.style.background="rgba(99,102,241,0.08)")}>
-                {q}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
-      <p style={{ color:"#334155", fontSize:"12px", marginTop:"16px" }}>Powered by Claude AI · Google Sheets 연동</p>
+      {/* ── 채팅 메시지 영역 ── */}
+      <div style={{ width:"100%", maxWidth:"100%", flex:1, overflowY:"auto", padding:"14px 12px", display:"flex", flexDirection:"column", minHeight:0, height:"calc(100dvh - 170px)" }}>
+        {messages.map((msg, i) => (
+          <div key={i} style={{ animation:"fadeIn 0.3s ease" }}>
+            <ChatBubble msg={msg} />
+          </div>
+        ))}
+        {isLoading && (
+          <div style={{ display:"flex", gap:"6px", alignItems:"flex-end", marginBottom:"10px" }}>
+            <div style={{ width:28, height:28, borderRadius:"50%", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14 }}>🤖</div>
+            <div style={{ padding:"10px 14px", borderRadius:"16px 16px 16px 4px", background:"rgba(30,41,59,0.95)", border:"1px solid rgba(99,102,241,0.2)", display:"flex", gap:"4px", alignItems:"center" }}>
+              {[0,0.2,0.4].map((d,i) => <div key={i} style={{ width:7, height:7, borderRadius:"50%", background:"#6366f1", animation:`pulse 1s ${d}s infinite` }} />)}
+            </div>
+          </div>
+        )}
+        <div ref={chatEndRef} />
+      </div>
+
+      {/* ── 예시 질문 버튼 ── */}
+      {messages.length <= 1 && (
+        <div style={{ width:"100%", maxWidth:"100%", padding:"6px 12px", display:"flex", flexWrap:"wrap", gap:"6px" }}>
+          {["입학 전형은?","졸업 후 진로는?","교육과정 알려줘","장학금 제도는?"].map((q) => (
+            <button key={q} onClick={() => setInput(q)}
+              style={{ padding:"5px 12px", borderRadius:"999px", border:"1px solid rgba(99,102,241,0.35)", background:"rgba(99,102,241,0.1)", color:"#a5b4fc", fontSize:"12px", cursor:"pointer" }}
+              onMouseEnter={(e) => (e.target.style.background="rgba(99,102,241,0.25)")}
+              onMouseLeave={(e) => (e.target.style.background="rgba(99,102,241,0.1)")}>
+              {q}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* ── 입력창 ── */}
+      <div style={{ width:"100%", maxWidth:"100%", padding:"8px 12px 14px", borderTop:"1px solid rgba(99,102,241,0.15)", display:"flex", gap:"8px", alignItems:"center", background:"rgba(10,15,30,0.95)" }}>
+        <input value={input} onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key==="Enter" && !e.shiftKey && sendMessage()}
+          placeholder="질문하세요..." disabled={isLoading}
+          style={{ flex:1, minWidth:0, padding:"11px 14px", borderRadius:"22px", border:"1px solid rgba(99,102,241,0.35)", background:"rgba(15,23,42,0.9)", color:"#e2e8f0", fontSize:"14px", outline:"none" }}
+          onFocus={(e) => (e.target.style.borderColor="rgba(99,102,241,0.7)")}
+          onBlur={(e) => (e.target.style.borderColor="rgba(99,102,241,0.35)")} />
+        <button onClick={sendMessage} disabled={isLoading||!input.trim()}
+          style={{ flexShrink:0, width:44, height:44, borderRadius:"50%", border:"none",
+            background:isLoading||!input.trim()?"rgba(99,102,241,0.3)":"linear-gradient(135deg,#6366f1,#8b5cf6)",
+            color:"#fff", fontWeight:700, fontSize:"16px", cursor:isLoading||!input.trim()?"not-allowed":"pointer",
+            display:"flex", alignItems:"center", justifyContent:"center" }}>
+          ↑
+        </button>
+      </div>
     </div>
   );
 }
