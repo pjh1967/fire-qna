@@ -200,9 +200,23 @@ export default function DeptQnABot() {
     setIsLoading(true);
     setMood("thinking");
 
+    // 시트 데이터를 Q&A 형식으로 변환해서 주입
     const sheetContext = sheetData
-      ? `\n\n## 학과 공식 정보 (Google Sheets 데이터)\n${JSON.stringify(sheetData, null, 2)}`
-      : "\n\n(Google Sheets 데이터 미연결. 일반 지식으로 답변합니다.)";
+      ? `
+
+## ⭐ 학과 공식 Q&A 데이터 (최우선 참고 - 반드시 이 내용을 기반으로 답변)
+` +
+        sheetData.map((row, i) => {
+          const entries = Object.entries(row).map(([k, v]) => `${k}: ${v}`).join(" / ");
+          return `[${i+1}] ${entries}`;
+        }).join("
+") +
+        `
+
+위 데이터에 관련 내용이 있으면 반드시 해당 내용을 답변에 포함하세요. 누락하지 마세요.`
+      : "
+
+(Google Sheets 데이터 미연결. 일반 지식으로 답변합니다.)";
 
     const systemPrompt = `당신은 혜전대학교 소방안전관리과의 친절하고 유능한 AI 도우미 ${CONFIG.BOT_NAME}입니다.
 학생, 학부모, 수험생의 질문에 정확하고 친근하게 답변해주세요.
@@ -228,7 +242,7 @@ export default function DeptQnABot() {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
-          model:"claude-sonnet-4-6", max_tokens:1000, system:systemPrompt,
+          model:"claude-sonnet-4-6", max_tokens:2000, system:systemPrompt,
           messages:[
             ...messages.filter((m) => m.role !== "system").map((m) => ({ role:m.role, content:m.content })),
             { role:"user", content:userMsg },
