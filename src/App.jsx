@@ -125,6 +125,7 @@ function ChatBubble({ msg }) {
               em: ({children}) => <em style={{color:"#a5b4fc"}}>{children}</em>,
               code: ({children}) => <code style={{background:"rgba(99,102,241,0.2)",padding:"1px 4px",borderRadius:"3px",fontSize:"11px",color:"#c7d2fe"}}>{children}</code>,
               hr: () => <hr style={{border:"none",borderTop:"1px solid rgba(99,102,241,0.2)",margin:"4px 0"}} />,
+              a: ({href, children}) => <a href={href} target="_blank" rel="noopener noreferrer" style={{color:"#60a5fa",textDecoration:"underline"}}>{children}</a>,
               table: ({children}) => (
                 <div style={{overflowX:"auto",margin:"6px 0",width:"100%"}}>
                   <table style={{borderCollapse:"collapse",width:"100%",fontSize:"11px",border:"1px solid rgba(99,102,241,0.4)",tableLayout:"fixed"}}>{children}</table>
@@ -208,10 +209,14 @@ export default function DeptQnABot() {
 
 ## 답변 시 데이터 우선순위
 1순위. 아래 Google Sheets 데이터 (가장 정확한 공식 정보)
-2순위. 혜전대학교 소방안전관리과 공식 정보
+2순위. 혜전대학교 소방안전관리과 공식 정보 (혜전대학교 홈페이지: www.hj.ac.kr)
 3순위. 일반적인 소방안전관리 분야 지식
 
-출처가 불분명하거나 확인되지 않은 내용은 "정확한 내용은 학과장(010-5195-3543)에게 문의해 주세요."라고 안내하세요.
+출처가 불분명하거나 확인되지 않은 내용은 아래 문의처를 안내하세요:
+- 학과장 직통: 010-5195-3543
+- 혜전대학교 홈페이지: https://www.hj.ac.kr
+- 혜전대학교 입학 홈페이지: https://ipsi.hj.ac.kr
+문의처 안내 시 위 링크를 마크다운 형식으로 제공하세요. 예: [혜전대학교 홈페이지](https://www.hj.ac.kr)
 
 ## 답변 형식
 - 비교, 목록, 일정, 자격증, 교육과정 등 나열 가능한 정보는 반드시 마크다운 표(table)로 제공하세요.
