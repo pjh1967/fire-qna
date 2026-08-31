@@ -244,10 +244,11 @@ export default function DeptQnABot() {
       });
       const data = await res.json();
       const reply = data.content?.[0]?.text || "죄송해요, 응답을 받지 못했습니다.";
+      const aiEngine = data.ai_engine || "Unknown";
       setMessages((prev) => [...prev, { role:"assistant", content:reply }]);
       setMood("happy");
       setTimeout(() => setMood("idle"), 2000);
-      saveLog(userMsg, reply);
+      saveLog(userMsg, reply, aiEngine);
     } catch {
       setMessages((prev) => [...prev, { role:"assistant", content:"⚠️ 네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }]);
       setMood("idle");
