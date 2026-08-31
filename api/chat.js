@@ -40,14 +40,16 @@ export default async function handler(req, res) {
 
       const geminiData = await geminiRes.json();
 
-      // 오류 없으면 Gemini 응답 반환
       if (geminiRes.ok && geminiData?.candidates?.[0]?.content?.parts?.[0]?.text) {
         const text = geminiData.candidates[0].content.parts[0].text;
         console.log("✅ Gemini 응답 성공");
-        return res.status(200).json({ content: [{ type: "text", text }] });
+        // ai_engine 정보 포함해서 반환
+        return res.status(200).json({
+          content: [{ type: "text", text }],
+          ai_engine: "Gemini",
+        });
       }
 
-      // Gemini 오류면 Anthropic으로 fallback
       console.log("⚠️ Gemini 실패, Anthropic으로 전환:", geminiData?.error?.message);
 
     } catch (e) {
@@ -55,12 +57,12 @@ export default async function handler(req, res) {
     }
   }
 
-
   // ── 2순위: Anthropic API fallback ──────────────────
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
   if (!anthropicKey) {
     return res.status(200).json({
-      content: [{ type: "text", text: "API 키가 설정되지 않았습니다. 관리자에게 문의해주세요." }]
+      content: [{ type: "text", text: "API 키가 설정되지 않았습니다. 관리자에게 문의해주세요." }],
+      ai_engine: "없음",
     });
   }
 
@@ -77,11 +79,14 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+    // ai_engine 정보 추가
+    data.ai_engine = "Anthropic";
     return res.status(response.status).json(data);
 
   } catch (e) {
     return res.status(200).json({
-      content: [{ type: "text", text: `서버 오류: ${e.message}` }]
+      content: [{ type: "text", text: `서버 오류: ${e.message}` }],
+      ai_engine: "오류",
     });
   }
 }
