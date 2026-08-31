@@ -28,7 +28,7 @@ function parseCSV(text) {
 function RobotMascot({ isTyping, mood }) {
   return (
     <img
-      src="/firebot.png"
+      src="/firebot_nobg.png"
       alt="파이어봇"
       style={{
         width: "90px",
@@ -38,8 +38,7 @@ function RobotMascot({ isTyping, mood }) {
           ? "bobbing 0.5s ease-in-out infinite alternate"
           : "idle 3s ease-in-out infinite alternate",
         filter: isTyping ? "drop-shadow(0 0 8px rgba(239,68,68,0.6))" : "drop-shadow(0 4px 12px rgba(239,68,68,0.3))",
-        mixBlendMode: "screen",
-        borderRadius: "8px",
+
       }}
     />
   );
