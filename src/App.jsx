@@ -24,6 +24,7 @@ function parseCSV(text) {
   });
 }
 
+
 function RobotMascot({ isTyping, mood }) {
   return (
     <svg viewBox="0 0 160 220" width="80" height="110"
