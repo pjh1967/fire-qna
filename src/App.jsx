@@ -27,6 +27,22 @@ function parseCSV(text) {
 
 function RobotMascot({ isTyping, mood }) {
   return (
+    <img
+      src="/firebot.png"
+      alt="파이어봇"
+      style={{
+        width: "90px",
+        height: "90px",
+        objectFit: "contain",
+        animation: isTyping
+          ? "bobbing 0.5s ease-in-out infinite alternate"
+          : "idle 3s ease-in-out infinite alternate",
+        filter: isTyping ? "drop-shadow(0 0 8px rgba(239,68,68,0.6))" : "drop-shadow(0 4px 12px rgba(239,68,68,0.3))",
+      }}
+    />
+  );
+}) {
+  return (
     <svg viewBox="0 0 160 220" width="80" height="110"
       style={{ filter:"drop-shadow(0 4px 12px rgba(239,68,68,0.35))", animation: isTyping ? "bobbing 0.5s ease-in-out infinite alternate" : "idle 3s ease-in-out infinite alternate", overflow:"visible", flexShrink:0 }}>
       <ellipse cx="80" cy="52" rx="40" ry="44" fill="#dc2626" />
