@@ -275,12 +275,7 @@ export default function DeptQnABot() {
         <div>
           <div style={{ fontSize:"18px", fontWeight:800, color:"#f8fafc", letterSpacing:"-0.02em", lineHeight:1.2 }}>{CONFIG.DEPT_NAME}</div>
           <div style={{ fontSize:"12px", color:"#6366f1", fontWeight:600, marginTop:"3px" }}>{CONFIG.BOT_NAME}</div>
-          {logStatus && (
-            <div style={{ fontSize:"10px", marginTop:"4px",
-              color: logStatus==="saved"?"#4ade80":logStatus==="saving"?"#fbbf24":"#f87171" }}>
-              {logStatus==="saving"?"저장 중...":logStatus==="saved"?"✓ 저장됨":"저장 실패"}
-            </div>
-          )}
+
         </div>
       </div>
 
