@@ -182,11 +182,11 @@ export default function DeptQnABot() {
     } catch {}
   }
 
-  async function saveLog(question, answer) {
+  async function saveLog(question, answer, aiEngine) {
     if (!CONFIG.LOG_SCRIPT_URL.includes("script.google.com")) return;
     setLogStatus("saving");
     try {
-      await fetch(CONFIG.LOG_SCRIPT_URL, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ question, answer }) });
+      await fetch(CONFIG.LOG_SCRIPT_URL, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ question, answer, aiEngine }) });
       setLogStatus("saved");
     } catch { setLogStatus("error"); }
     finally { setTimeout(() => setLogStatus(""), 3000); }
