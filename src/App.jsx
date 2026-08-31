@@ -28,7 +28,7 @@ function parseCSV(text) {
 function RobotMascot({ isTyping, mood }) {
   return (
     <img
-      src="/firebot_nobg2.png"
+      src="/firebot_final.png"
       alt="파이어봇"
       style={{
         width: "90px",
