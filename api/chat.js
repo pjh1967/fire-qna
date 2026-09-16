@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           model: "gpt-5-mini",
           messages: openaiMessages,
-          max_tokens: max_tokens || 2000,
+          max_completion_tokens: max_tokens || 2000,
           temperature: 0.7,
         }),
       });
