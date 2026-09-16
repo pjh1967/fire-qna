@@ -30,7 +30,6 @@ export default async function handler(req, res) {
           model: "gpt-5-mini",
           messages: openaiMessages,
           max_completion_tokens: max_tokens || 2000,
-          temperature: 0.7,
         }),
       });
 
