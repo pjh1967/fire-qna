@@ -5,55 +5,50 @@ export default async function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  // ── 1순위: Gemini API 시도 ──────────────────────────
-  const geminiKey = process.env.GEMINI_API_KEY;
-  if (geminiKey) {
+  // ── 1순위: OpenAI API 시도 ──────────────────────────
+  const openaiKey = process.env.OPENAI_API_KEY;
+  if (openaiKey) {
     try {
       const { messages, system, max_tokens } = req.body;
 
-      const geminiMessages = [];
+      // Anthropic 형식 → OpenAI 형식 변환
+      const openaiMessages = [];
       if (system) {
-        geminiMessages.push({ role: "user", parts: [{ text: system }] });
-        geminiMessages.push({ role: "model", parts: [{ text: "네, 알겠습니다. 안내해 드리겠습니다." }] });
+        openaiMessages.push({ role: "system", content: system });
       }
       for (const m of messages) {
-        geminiMessages.push({
-          role: m.role === "assistant" ? "model" : "user",
-          parts: [{ text: m.content }],
-        });
+        openaiMessages.push({ role: m.role, content: m.content });
       }
 
-      const geminiRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: geminiMessages,
-            generationConfig: {
-              maxOutputTokens: max_tokens || 2000,
-              temperature: 0.7,
-            },
-          }),
-        }
-      );
+      const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${openaiKey}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-5-mini",
+          messages: openaiMessages,
+          max_tokens: max_tokens || 2000,
+          temperature: 0.7,
+        }),
+      });
 
-      const geminiData = await geminiRes.json();
+      const openaiData = await openaiRes.json();
 
-      if (geminiRes.ok && geminiData?.candidates?.[0]?.content?.parts?.[0]?.text) {
-        const text = geminiData.candidates[0].content.parts[0].text;
-        console.log("✅ Gemini 응답 성공");
-        // ai_engine 정보 포함해서 반환
+      if (openaiRes.ok && openaiData?.choices?.[0]?.message?.content) {
+        const text = openaiData.choices[0].message.content;
+        console.log("✅ OpenAI 응답 성공");
         return res.status(200).json({
           content: [{ type: "text", text }],
-          ai_engine: "Gemini",
+          ai_engine: "OpenAI",
         });
       }
 
-      console.log("⚠️ Gemini 실패, Anthropic으로 전환:", geminiData?.error?.message);
+      console.log("⚠️ OpenAI 실패, Anthropic으로 전환:", openaiData?.error?.message);
 
     } catch (e) {
-      console.log("⚠️ Gemini 예외 발생, Anthropic으로 전환:", e.message);
+      console.log("⚠️ OpenAI 예외 발생, Anthropic으로 전환:", e.message);
     }
   }
 
@@ -79,7 +74,6 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    // ai_engine 정보 추가
     data.ai_engine = "Anthropic";
     return res.status(response.status).json(data);
 
